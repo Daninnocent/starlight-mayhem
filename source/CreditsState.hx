@@ -299,6 +299,11 @@ class CreditsState extends MusicBeatState
 				bop();
 			},0);
 		changeSelection();
+
+		#if mobileC
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
+
 		super.create();
 	}
 

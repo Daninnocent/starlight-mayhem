@@ -12,10 +12,10 @@ import flixel.util.FlxTimer;
 import flixel.FlxSubState;
 import haxe.Json;
 import haxe.format.JsonParser;
-#if sys
-import sys.FileSystem;
-import sys.io.File;
-#end
+// #if sys
+// import sys.FileSystem;
+// import sys.io.File;
+// #end
 import openfl.utils.Assets;
 
 using StringTools;
@@ -84,21 +84,21 @@ class DialogueCharacter extends FlxSprite
 		var characterPath:String = 'images/dialogue/' + character + '.json';
 		var rawJson = null;
 
-		#if MODS_ALLOWED
-		var path:String = Paths.modFolders(characterPath);
-		if (!FileSystem.exists(path)) {
-			path = Paths.getPreloadPath(characterPath);
-		}
+		// #if MODS_ALLOWED
+		// var path:String = Paths.modFolders(characterPath);
+		// if (!FileSystem.exists(path)) {
+		// 	path = Paths.getPreloadPath(characterPath);
+		// }
 
-		if(!FileSystem.exists(path)) {
-			path = Paths.getPreloadPath('images/dialogue/' + DEFAULT_CHARACTER + '.json');
-		}
-		rawJson = File.getContent(path);
+		// if(!FileSystem.exists(path)) {
+		// 	path = Paths.getPreloadPath('images/dialogue/' + DEFAULT_CHARACTER + '.json');
+		// }
+		// rawJson = File.getContent(path);
 
-		#else
+		// #else
 		var path:String = Paths.getPreloadPath(characterPath);
 		rawJson = Assets.getText(path);
-		#end
+		// #end
 		
 		jsonFile = cast Json.parse(rawJson);
 	}

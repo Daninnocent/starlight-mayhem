@@ -140,6 +140,10 @@ class OptionsState extends MusicBeatState
 		}
 		changeSelection();
 
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
+
 		super.create();
 	}
 
@@ -271,6 +275,10 @@ class NotesSubstate extends MusicBeatSubstate
 		hsvText = new Alphabet(0, 0, "Hue    Saturation  Brightness", false, false, 0, 0.65);
 		add(hsvText);
 		changeSelection();
+
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	var changingNote:Bool = false;
@@ -377,6 +385,7 @@ class NotesSubstate extends MusicBeatSubstate
 		}
 
 		if (controls.BACK || (changingNote && controls.ACCEPT)) {
+			remove(_virtualpad);
 			changeSelection();
 			if(!changingNote) {
 				grpNumbers.forEachAlive(function(spr:Alphabet) {
@@ -583,6 +592,10 @@ class ControlsSubstate extends MusicBeatSubstate {
 			grptxt.add(text);
 		}
 		changeSelection();
+
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	var leaving:Bool = false;
@@ -607,6 +620,7 @@ class ControlsSubstate extends MusicBeatSubstate {
 			}
 
 			if (controls.BACK) {
+				remove(_virtualpad);
 				ClientPrefs.keyBinds = controlMap.copy();
 				ClientPrefs.reloadControls();
 				grpOptions.forEachAlive(function(spr:Alphabet) {
@@ -973,6 +987,10 @@ class PreferencesSubstate extends MusicBeatSubstate
 		}
 		changeSelection();
 		reloadValues();
+
+		#if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	var nextAccept:Int = 5;
@@ -1005,6 +1023,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		}
 
 		if (controls.BACK) {
+			remove(_virtualpad);
 			grpOptions.forEachAlive(function(spr:Alphabet) {
 				spr.alpha = 0;
 			});
