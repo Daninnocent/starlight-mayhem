@@ -727,15 +727,15 @@ class Controls extends FlxActionSet
 	 */
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
-		var copyKeys:Array<FlxKey> = keys.copy();
-		for (i in 0...copyKeys.length) {
-			if(i == NONE) copyKeys.remove(i);
-		}
+		// var copyKeys:Array<FlxKey> = keys.copy();
+		// for (i in 0...copyKeys.length) {
+		// 	if(i == NONE) copyKeys.remove(i);
+		// }
 
 		#if (haxe >= "4.0.0")
-		inline forEachBound(control, (action, state) -> addKeys(action, copyKeys, state));
+		inline forEachBound(control, (action, state) -> addKeys(action, keys, state));
 		#else
-		forEachBound(control, function(action, state) addKeys(action, copyKeys, state));
+		forEachBound(control, function(action, state) addKeys(action, keys, state));
 		#end
 	}
 
@@ -745,15 +745,15 @@ class Controls extends FlxActionSet
 	 */
 	public function unbindKeys(control:Control, keys:Array<FlxKey>)
 	{
-		var copyKeys:Array<FlxKey> = keys.copy();
-		for (i in 0...copyKeys.length) {
-			if(i == NONE) copyKeys.remove(i);
-		}
+		// var copyKeys:Array<FlxKey> = keys.copy();
+		// for (i in 0...copyKeys.length) {
+		// 	if(i == NONE) copyKeys.remove(i);
+		// }
 
 		#if (haxe >= "4.0.0")
-		inline forEachBound(control, (action, _) -> removeKeys(action, copyKeys));
+		inline forEachBound(control, (action, _) -> removeKeys(action, keys));
 		#else
-		forEachBound(control, function(action, _) removeKeys(action, copyKeys));
+		forEachBound(control, function(action, _) removeKeys(action, keys));
 		#end
 	}
 
